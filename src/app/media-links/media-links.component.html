@@ -1,0 +1,29 @@
+<div class="row">
+  <blockquote>
+    <p>
+      <em>{{link.description}}</em>
+    </p>
+  </blockquote>
+  <input type="button" value="Go back" [routerLink]="['/home']">
+</div>
+<div class="row">
+  <div class="column">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of videos">
+          <td>{{video.title ? video.title : video.href}}</td>
+          <td>
+              <input type="button" value="browse" (click)="browse(video)">
+              <input type="button" value="play" (click)="play(video)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="column column-80">
+    <input type="text" [(ngModel)]="query" placeholder="Search your media">
+  </div>
+  <div class="column">
+    <input type="button" value="Search" (click)="search()">
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let link of links">
+          <td>{{link.description}}</td>
+          <td>
+            <input type="button" value="View" (click)="fetch(link)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
