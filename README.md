@@ -1,7 +1,17 @@
 # index-media
 Stream media via index links
 
+## Dependency
+Mpv player is used to stream media. Make sure Mpv is installed in system (path variable)
+## Current State
+This is very much a work in progress.
 
+##TODO
+- [] Other media player support
+- [] Improve UI/UX
+- [] Add Dashboard for Movies/Tv-series
+- [] Link bookmark
+- [] Trakt integration
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
