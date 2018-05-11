@@ -1,10 +1,14 @@
 <div class="row">
-  <blockquote>
-    <p>
-      <em>{{link.description}}</em>
-    </p>
-  </blockquote>
-  <input type="button" value="Go back" [routerLink]="['/home']">
+  <div class="column column-80">
+    <blockquote>
+      <p>
+        <em>{{link.description}}</em>
+      </p>
+    </blockquote>
+  </div>
+  <div class="column" style="margin: auto;">
+    <input type="button" value="Go back" [routerLink]="['/home']">
+  </div>
 </div>
 <div class="row">
   <div class="column">
@@ -17,10 +21,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let video of videos">
-          <td>{{video.title ? video.title : video.href}}</td>
+          <td>{{video | link}}</td>
           <td>
-              <input type="button" value="browse" (click)="browse(video)">
-              <input type="button" value="play" (click)="play(video)">
+            <input type="button" value="browse" (click)="browse(video)">
+            <input type="button" value="play" (click)="play(video)">
           </td>
         </tr>
       </tbody>

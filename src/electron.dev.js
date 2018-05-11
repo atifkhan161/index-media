@@ -91,10 +91,10 @@ var cheerio = require("cheerio");
 var request = require('request');
 google.resultsPerPage = 25;
 appExpress.post('/api/query', function (req, res) {
-  google(req.body.query + ' intitle:”index of” mp4|mkv', function (err, response){
-    if (err) console.error(err)
-    res.send(response.links);
-  });
+  // google(req.body.query + ' intitle:”index of” mp4|mkv', function (err, response){
+  //   if (err) console.error(err)
+  //   res.send(response.links);
+  // });
   var data = [{
     "title": "Index of /Data/Serial/Game of Thrones/S6/ - 98Music",
     "link": "http://dl2.my98music.com/Data/Serial/Game%20of%20Thrones/S6/",
@@ -221,7 +221,7 @@ appExpress.post('/api/query', function (req, res) {
     "description": "Name, Last modified, Size, Description. [PARENTDIR], Parent Directory, -. [DIR], \nT_&_P, 11-Sep-2016 01:42, -. [DIR], T_Brown, 19-Mar-2016 23:55, -. [DIR] ...",
     "href": "https://hypem.com/download/T/"
   }];
-  // res.send(data);
+  res.send(data);
 });
 appExpress.post('/api/query/link', function (req, res) {
   request({

@@ -9,6 +9,7 @@ import { ElectronService } from './electron-service.service';
 import { HomeComponent } from './home/home.component';
 import { MediaLinksComponent } from './media-links/media-links.component';
 import { DataService } from './services/data.service';
+import { LinkPipe } from './utility/link.pipe';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MediaLinksComponent
+    MediaLinksComponent,
+    LinkPipe
   ],
   imports: [
     BrowserModule,

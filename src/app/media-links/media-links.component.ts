@@ -11,11 +11,13 @@ import { ElectronService } from '../electron-service.service';
 export class MediaLinksComponent implements OnInit {
   link: any;
   videos: video[];
+  currentUrl: string;
+
   constructor(private router: Router, private route: ActivatedRoute, private _electronService: ElectronService) {
     this.route.params.subscribe(params => {
-      console.log(params);
       if (params) {
         this.link = params;
+        this.currentUrl = this.link.link;
         this._electronService.fetchLink(this.link).subscribe((data: video[]) => {
           this.videos = data;
         });
@@ -24,20 +26,22 @@ export class MediaLinksComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   play(video: video) {
-    let url = this.link.link + video.href;
-    this._electronService.playLink(url).subscribe((data: video[]) => {
-      this.videos = data;
+    let url = this.currentUrl + video.href;
+    this._electronService.playLink(url).subscribe((data) => {
     });
   }
   browse(video: video) {
-    let url = this.link.link + video.href;
+    let element = document.createElement("a");
+    element.href = this.currentUrl + video.href;
+    let url = this.currentUrl = element.href;
     let link = {link : url};
 
     this._electronService.fetchLink(link).subscribe((data: video[]) => {
+      this.videos = data;
     });
   }
 
