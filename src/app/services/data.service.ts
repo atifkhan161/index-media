@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
   links: string;
 
-  getLinks() {
+  getLinks() : any {
       return this.links;
   }
   setLinks(links) {

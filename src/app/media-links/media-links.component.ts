@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { link, video } from '../model/link.model';
 import { ElectronService } from '../electron-service.service';
@@ -12,7 +12,10 @@ export class MediaLinksComponent implements OnInit {
   link: any;
   videos: video[];
   currentUrl: string;
+  linksrc: string = "";
+  linktype: string = "video/webm";
 
+  @ViewChild ("player") player : ElementRef;
   constructor(private router: Router, private route: ActivatedRoute, private _electronService: ElectronService) {
     this.route.params.subscribe(params => {
       if (params) {
@@ -31,8 +34,11 @@ export class MediaLinksComponent implements OnInit {
 
   play(video: video) {
     let url = this.currentUrl + video.href;
-    this._electronService.playLink(url).subscribe((data) => {
-    });
+    this.linksrc = url;
+    this.player.nativeElement.src = url;
+    this.player.nativeElement.play();
+    // this._electronService.playLink(url).subscribe((data) => {
+    // });
   }
   browse(video: video) {
     let element = document.createElement("a");

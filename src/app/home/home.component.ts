@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.query = "";
-    let links = this.dataService.getLinks();
+    this.links = this.dataService.getLinks();
   }
   public search() {
     this._electronService.getLinks(this.query).subscribe((data: link[]) => {
