@@ -1,12 +1,10 @@
 # index-media
 Stream media via index links
 
-## Dependency
-Mpv player is used to stream media. Make sure Mpv is installed in system (path variable)
+
 ## Current State
 This is very much a work in progress.
 
-- [ ] Other media player support
 - [ ] Improve UI/UX
 - [ ] Add Dashboard for Movies/Tv-series
 - [ ] Link bookmark
