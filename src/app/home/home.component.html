@@ -11,15 +11,31 @@
     <table>
       <thead>
         <tr>
-          <th>Title</th>
-          <th></th>
+          <th>Result Title</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let link of links">
-          <td>{{link.description}}</td>
+          <td><a (click)="fetch(link)">{{link.title}}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="column">
+    <table>
+      <thead>
+        <tr>
+          <th>Bookmarks</th>
+          <th><a (click)="clearBookmark()">Clear</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let link of bookmarks">
           <td>
-            <input type="button" value="View" (click)="fetch(link)">
+            <a (click)="fetch(link)">{{link.title}}</a>
+          </td>
+          <td>
+            <a (click)="removeBookmark(link)">Remove</a>
           </td>
         </tr>
       </tbody>

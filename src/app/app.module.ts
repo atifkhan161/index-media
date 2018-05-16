@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MediaLinksComponent } from './media-links/media-links.component';
 import { DataService } from './services/data.service';
 import { LinkPipe } from './utility/link.pipe';
+import { DataStore } from './services/data.store';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     ElectronService,
-    DataService
+    DataService,
+    DataStore
   ],
   bootstrap: [AppComponent]
 })

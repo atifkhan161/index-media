@@ -3,6 +3,7 @@ import { link } from '../model/link.model';
 import { ElectronService } from '../electron-service.service';
 import { DataService } from '../services/data.service';
 import { Router } from '@angular/router';
+import { DataStore } from '../services/data.store';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,14 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   query: string;
   links: link[];
-  constructor(private _electronService: ElectronService, private dataService: DataService, private router: Router) { }
+  bookmarks: link[];
+  constructor(private _electronService: ElectronService, private dataService: DataService,
+    private router: Router, private dataStore: DataStore) { }
 
   ngOnInit() {
     this.query = "";
     this.links = this.dataService.getLinks();
+    this.bookmarks = this.dataStore.getBookmarks();
   }
   public search() {
     this._electronService.getLinks(this.query).subscribe((data: link[]) => {
@@ -27,5 +31,15 @@ export class HomeComponent implements OnInit {
 
   public fetch(link: link) {
     this.router.navigate(['media', link]);
+  }
+
+  public removeBookmark(link: link) {
+    this.dataStore.removeLink(link);
+    this.bookmarks = this.dataStore.getBookmarks();
+  }
+
+  public clearBookmark() {
+    this.dataStore.clearAll();
+    this.bookmarks = [];
   }
 }

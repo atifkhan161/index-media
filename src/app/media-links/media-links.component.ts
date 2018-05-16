@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { link, video } from '../model/link.model';
 import { ElectronService } from '../electron-service.service';
+import { DataStore } from '../services/data.store';
 
 @Component({
   selector: 'app-media-links',
@@ -14,9 +15,11 @@ export class MediaLinksComponent implements OnInit {
   currentUrl: string;
   linksrc: string = "";
   linktype: string = "video/webm";
-
-  @ViewChild ("player") player : ElementRef;
-  constructor(private router: Router, private route: ActivatedRoute, private _electronService: ElectronService) {
+  isBookmarked: boolean = false;
+  
+  @ViewChild("player") player: ElementRef;
+  constructor(private router: Router, private route: ActivatedRoute, private _electronService: ElectronService,
+    private myDbService: DataStore) {
     this.route.params.subscribe(params => {
       if (params) {
         this.link = params;
@@ -29,7 +32,7 @@ export class MediaLinksComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.isBookmarked = this.myDbService.isBookmarked(this.link);
   }
 
   play(video: video) {
@@ -44,11 +47,15 @@ export class MediaLinksComponent implements OnInit {
     let element = document.createElement("a");
     element.href = this.currentUrl + video.href;
     let url = this.currentUrl = element.href;
-    let link = {link : url};
+    let link = { link: url };
 
     this._electronService.fetchLink(link).subscribe((data: video[]) => {
       this.videos = data;
     });
   }
 
+  bookmark() {
+    this.myDbService.saveLink(this.link);
+    this.isBookmarked = true;
+  }
 }
